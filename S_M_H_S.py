@@ -12,7 +12,7 @@ st.title("🧠 Student Mental Health Score Prediction")
 age = st.text_input("Age (Numeric e.g: 20)")
 gender = st.selectbox("Gender", ["Select", "Male", "Female"])
 AL = st.selectbox("Academic Level", ["Select", "Undergraduate", "Graduate", "High School"])
-ADU = st.text_input("Average Daily Usage Hours (social media) (e.g: 2, 4.5)")
+ADU = st.text_input("Average Daily Usage Hours (social media)(e.g: 2, 4.5)")
 MUP = st.selectbox("Most Used Platform", ["Select", "Instagram", "TikTok", "Facebook", "WhatsApp", 
                                           "Twitter", "LinkedIn", "WeChat", "Snapchat", 
                                           "VKontakte", "LINE", "KakaoTalk", "YouTube"])
