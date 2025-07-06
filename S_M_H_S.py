@@ -22,8 +22,7 @@ RS = st.selectbox("Relationship Status", ["Select", "Single", "In Relationship",
 
 # Predict Button
 if st.button("Predict Mental Health Score"):
-    if (gender == "Select" or AL == "Select" or MUP == "Select" or AAP == "Select" or RS == "Select" or
-        age == "" or ADU == "" or Shpn == ""):
+    if "Select" in [gender, AL, MUP, AAP, RS] or "" in [age, ADU, Shpn]:
         st.warning("⚠️ Please fill all inputs correctly.")
     else:
         try:
@@ -39,9 +38,26 @@ if st.button("Predict Mental Health Score"):
                 'Relationship_Status': [RS]
             })
 
-            # Predict
-            prediction = pipe.predict(input_df)[0]
-            st.success(f"🎯 Predicted Mental Health Score: {round(prediction, 2)} / 10")
+            # Predict and show result
+            result = pipe.predict(input_df)[0]
+            score = round(result, 2)
+
+            # Show result with emotion label
+            if score < 4:
+                st.error(f"😟 Low Mental Health Score: {score}")
+            elif score < 7:
+                st.warning(f"😐 Moderate Mental Health Score: {score}")
+            else:
+                st.success(f"😄 Good Mental Health Score: {score}")
 
         except Exception as e:
-            st.error(f"❌ Error: {str(e)}")
+            st.error(f"❌ Something went wrong: {e}")
+st.markdown("---")
+st.markdown(
+    "<div style='text-align: center; color: gray;'>"
+    "© 2025 Rajhans Bagri | All Rights Reserved"
+    "</div>",
+    unsafe_allow_html=True
+)
+
+
